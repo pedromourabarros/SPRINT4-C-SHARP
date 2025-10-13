@@ -1,0 +1,499 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BetGuardianAPI</name>
+    </assembly>
+    <members>
+        <member name="T:BetGuardianAPI.Controllers.AlertasController">
+            <summary>
+            Controller para gerenciamento de alertas do sistema BetGuardian
+            </summary>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AlertasController.GetAlertas">
+            <summary>
+            Obtém todos os alertas cadastrados
+            </summary>
+            <returns>Lista de alertas</returns>
+            <response code="200">Retorna a lista de alertas</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AlertasController.GetAlerta(System.Int32)">
+            <summary>
+            Obtém um alerta específico pelo ID
+            </summary>
+            <param name="id">ID do alerta</param>
+            <returns>Dados do alerta</returns>
+            <response code="200">Retorna o alerta encontrado</response>
+            <response code="404">Alerta não encontrado</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AlertasController.CreateAlerta(BetGuardianAPI.DTOs.CreateAlertaDTO)">
+            <summary>
+            Cria um novo alerta
+            </summary>
+            <param name="createDto">Dados do alerta a ser criado</param>
+            <returns>Alerta criado</returns>
+            <response code="201">Alerta criado com sucesso</response>
+            <response code="400">Dados inválidos</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AlertasController.UpdateAlerta(System.Int32,BetGuardianAPI.DTOs.UpdateAlertaDTO)">
+            <summary>
+            Atualiza um alerta existente
+            </summary>
+            <param name="id">ID do alerta</param>
+            <param name="updateDto">Dados atualizados do alerta</param>
+            <returns>Alerta atualizado</returns>
+            <response code="200">Alerta atualizado com sucesso</response>
+            <response code="400">Dados inválidos</response>
+            <response code="404">Alerta não encontrado</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AlertasController.DeleteAlerta(System.Int32)">
+            <summary>
+            Remove um alerta
+            </summary>
+            <param name="id">ID do alerta</param>
+            <returns>Resultado da operação</returns>
+            <response code="204">Alerta removido com sucesso</response>
+            <response code="404">Alerta não encontrado</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AlertasController.GetAlertasByUsuario(System.Int32)">
+            <summary>
+            Obtém alertas de um usuário específico
+            </summary>
+            <param name="usuarioId">ID do usuário</param>
+            <returns>Lista de alertas do usuário</returns>
+            <response code="200">Lista de alertas retornada</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AlertasController.GetAlertasByTipo(BetGuardianAPI.Models.TipoAlerta)">
+            <summary>
+            Obtém alertas por tipo
+            </summary>
+            <param name="tipo">Tipo do alerta (Informativo, Aviso, Critico, Motivacional)</param>
+            <returns>Lista de alertas do tipo especificado</returns>
+            <response code="200">Lista de alertas retornada</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AlertasController.GetAlertasRecentes(System.Int32)">
+            <summary>
+            Obtém alertas recentes
+            </summary>
+            <param name="dias">Número de dias para buscar alertas (padrão: 7)</param>
+            <returns>Lista de alertas recentes</returns>
+            <response code="200">Lista de alertas retornada</response>
+        </member>
+        <member name="T:BetGuardianAPI.Controllers.AtividadesAlternativasController">
+            <summary>
+            Controller para gerenciamento de atividades alternativas do sistema BetGuardian
+            </summary>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AtividadesAlternativasController.GetAtividades">
+            <summary>
+            Obtém todas as atividades alternativas cadastradas
+            </summary>
+            <returns>Lista de atividades alternativas</returns>
+            <response code="200">Retorna a lista de atividades</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AtividadesAlternativasController.GetAtividade(System.Int32)">
+            <summary>
+            Obtém uma atividade específica pelo ID
+            </summary>
+            <param name="id">ID da atividade</param>
+            <returns>Dados da atividade</returns>
+            <response code="200">Retorna a atividade encontrada</response>
+            <response code="404">Atividade não encontrada</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AtividadesAlternativasController.CreateAtividade(BetGuardianAPI.DTOs.CreateAtividadeAlternativaDTO)">
+            <summary>
+            Cria uma nova atividade alternativa
+            </summary>
+            <param name="createDto">Dados da atividade a ser criada</param>
+            <returns>Atividade criada</returns>
+            <response code="201">Atividade criada com sucesso</response>
+            <response code="400">Dados inválidos</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AtividadesAlternativasController.UpdateAtividade(System.Int32,BetGuardianAPI.DTOs.UpdateAtividadeAlternativaDTO)">
+            <summary>
+            Atualiza uma atividade existente
+            </summary>
+            <param name="id">ID da atividade</param>
+            <param name="updateDto">Dados atualizados da atividade</param>
+            <returns>Atividade atualizada</returns>
+            <response code="200">Atividade atualizada com sucesso</response>
+            <response code="400">Dados inválidos</response>
+            <response code="404">Atividade não encontrada</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AtividadesAlternativasController.DeleteAtividade(System.Int32)">
+            <summary>
+            Remove uma atividade
+            </summary>
+            <param name="id">ID da atividade</param>
+            <returns>Resultado da operação</returns>
+            <response code="204">Atividade removida com sucesso</response>
+            <response code="404">Atividade não encontrada</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AtividadesAlternativasController.GetAtividadesByCategoria(System.String)">
+            <summary>
+            Obtém atividades por categoria
+            </summary>
+            <param name="categoria">Categoria das atividades</param>
+            <returns>Lista de atividades da categoria especificada</returns>
+            <response code="200">Lista de atividades retornada</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AtividadesAlternativasController.GetAtividadesByNivelDificuldade(System.Int32)">
+            <summary>
+            Obtém atividades por nível de dificuldade
+            </summary>
+            <param name="nivelDificuldade">Nível de dificuldade (1-5)</param>
+            <returns>Lista de atividades com o nível de dificuldade especificado</returns>
+            <response code="200">Lista de atividades retornada</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AtividadesAlternativasController.GetSugestaoAtividades(System.Int32)">
+            <summary>
+            Obtém sugestões de atividades para um usuário específico
+            </summary>
+            <param name="usuarioId">ID do usuário</param>
+            <returns>Sugestões de atividades personalizadas</returns>
+            <response code="200">Sugestões retornadas com sucesso</response>
+            <response code="404">Usuário não encontrado</response>
+        </member>
+        <member name="T:BetGuardianAPI.Controllers.AuthController">
+            <summary>
+            Controller responsável pela autenticação de usuários
+            </summary>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AuthController.Register(BetGuardianAPI.DTOs.RegisterDTO)">
+            <summary>
+            Registra um novo usuário no sistema
+            </summary>
+            <param name="registerDto">Dados do usuário para registro</param>
+            <returns>Token JWT e dados do usuário</returns>
+            <response code="201">Usuário registrado com sucesso</response>
+            <response code="400">Dados inválidos ou email já existe</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AuthController.Login(BetGuardianAPI.DTOs.LoginDTO)">
+            <summary>
+            Realiza login do usuário
+            </summary>
+            <param name="loginDto">Dados de login (email e senha)</param>
+            <returns>Token JWT e dados do usuário</returns>
+            <response code="200">Login realizado com sucesso</response>
+            <response code="401">Email ou senha inválidos</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.AuthController.ValidateToken">
+            <summary>
+            Valida se um token JWT é válido
+            </summary>
+            <returns>Informações do usuário autenticado</returns>
+            <response code="200">Token válido</response>
+            <response code="401">Token inválido</response>
+        </member>
+        <member name="T:BetGuardianAPI.Controllers.ExternalApiController">
+            <summary>
+            Controller para integração com APIs externas do sistema BetGuardian
+            </summary>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.ExternalApiController.GetMensagemMotivacional">
+            <summary>
+            Obtém uma mensagem motivacional de uma API externa
+            </summary>
+            <returns>Mensagem motivacional</returns>
+            <response code="200">Mensagem retornada com sucesso</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.ExternalApiController.GetInformacaoClima(System.String)">
+            <summary>
+            Obtém informações do clima de uma API externa
+            </summary>
+            <param name="cidade">Nome da cidade (padrão: São Paulo)</param>
+            <returns>Informações do clima</returns>
+            <response code="200">Informações do clima retornadas</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.ExternalApiController.GetNoticiaSaudeMental">
+            <summary>
+            Obtém notícias sobre saúde mental de uma API externa
+            </summary>
+            <returns>Notícia sobre saúde mental</returns>
+            <response code="200">Notícia retornada com sucesso</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.ExternalApiController.CriarAlertaComApiExterna(System.Int32,System.String)">
+            <summary>
+            Cria um alerta usando dados de uma API externa
+            </summary>
+            <param name="usuarioId">ID do usuário</param>
+            <param name="tipoApi">Tipo da API (motivacional, clima, saude)</param>
+            <returns>Alerta criado com dados externos</returns>
+            <response code="201">Alerta criado com sucesso</response>
+            <response code="400">Dados inválidos</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.ExternalApiController.GetAlertaCriado(System.Int32)">
+            <summary>
+            Endpoint auxiliar para obter um alerta criado
+            </summary>
+            <param name="id">ID do alerta</param>
+            <returns>Dados do alerta</returns>
+        </member>
+        <member name="T:BetGuardianAPI.Controllers.UsuariosController">
+            <summary>
+            Controller para gerenciamento de usuários do sistema BetGuardian
+            </summary>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.UsuariosController.GetUsuarios">
+            <summary>
+            Obtém todos os usuários cadastrados
+            </summary>
+            <returns>Lista de usuários</returns>
+            <response code="200">Retorna a lista de usuários</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.UsuariosController.GetUsuario(System.Int32)">
+            <summary>
+            Obtém um usuário específico pelo ID
+            </summary>
+            <param name="id">ID do usuário</param>
+            <returns>Dados do usuário</returns>
+            <response code="200">Retorna o usuário encontrado</response>
+            <response code="404">Usuário não encontrado</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.UsuariosController.CreateUsuario(BetGuardianAPI.DTOs.CreateUsuarioDTO)">
+            <summary>
+            Cria um novo usuário
+            </summary>
+            <param name="createDto">Dados do usuário a ser criado</param>
+            <returns>Usuário criado</returns>
+            <response code="201">Usuário criado com sucesso</response>
+            <response code="400">Dados inválidos</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.UsuariosController.UpdateUsuario(System.Int32,BetGuardianAPI.DTOs.UpdateUsuarioDTO)">
+            <summary>
+            Atualiza um usuário existente
+            </summary>
+            <param name="id">ID do usuário</param>
+            <param name="updateDto">Dados atualizados do usuário</param>
+            <returns>Usuário atualizado</returns>
+            <response code="200">Usuário atualizado com sucesso</response>
+            <response code="400">Dados inválidos</response>
+            <response code="404">Usuário não encontrado</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.UsuariosController.DeleteUsuario(System.Int32)">
+            <summary>
+            Remove um usuário
+            </summary>
+            <param name="id">ID do usuário</param>
+            <returns>Resultado da operação</returns>
+            <response code="204">Usuário removido com sucesso</response>
+            <response code="404">Usuário não encontrado</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.UsuariosController.AnalisarRiscoUsuario(System.Int32)">
+            <summary>
+            Analisa o nível de risco de um usuário
+            </summary>
+            <param name="id">ID do usuário</param>
+            <returns>Análise de risco do usuário</returns>
+            <response code="200">Análise realizada com sucesso</response>
+            <response code="404">Usuário não encontrado</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.UsuariosController.GetUsuariosMaiorRisco(System.Int32)">
+            <summary>
+            Obtém usuários com maior nível de risco
+            </summary>
+            <param name="limit">Número máximo de usuários a retornar (padrão: 10)</param>
+            <returns>Lista de usuários com maior risco</returns>
+            <response code="200">Lista de usuários retornada</response>
+        </member>
+        <member name="M:BetGuardianAPI.Controllers.UsuariosController.GetUsuariosPorNivelRisco(BetGuardianAPI.Models.NivelRisco)">
+            <summary>
+            Obtém usuários por nível de risco
+            </summary>
+            <param name="nivelRisco">Nível de risco (Baixo, Medio, Alto, Critico)</param>
+            <returns>Lista de usuários com o nível de risco especificado</returns>
+            <response code="200">Lista de usuários retornada</response>
+        </member>
+        <member name="T:BetGuardianAPI.Data.BetGuardianContext">
+            <summary>
+            Contexto do Entity Framework para o sistema BetGuardian
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.CreateAlertaDTO">
+            <summary>
+            DTO para criação de alerta
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.UpdateAlertaDTO">
+            <summary>
+            DTO para atualização de alerta
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.AlertaResponseDTO">
+            <summary>
+            DTO para resposta de alerta
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.CreateAtividadeAlternativaDTO">
+            <summary>
+            DTO para criação de atividade alternativa
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.UpdateAtividadeAlternativaDTO">
+            <summary>
+            DTO para atualização de atividade alternativa
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.AtividadeAlternativaResponseDTO">
+            <summary>
+            DTO para resposta de atividade alternativa
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.SugestaoAtividadeDTO">
+            <summary>
+            DTO para sugestão de atividades para usuário
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.RegisterDTO">
+            <summary>
+            DTO para registro de usuário
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.LoginDTO">
+            <summary>
+            DTO para login de usuário
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.AuthResponseDTO">
+            <summary>
+            DTO para resposta de autenticação
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.CreateUsuarioDTO">
+            <summary>
+            DTO para criação de usuário (apenas para administradores)
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.UpdateUsuarioDTO">
+            <summary>
+            DTO para atualização de usuário
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.UsuarioResponseDTO">
+            <summary>
+            DTO para resposta de usuário
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.DTOs.AnaliseRiscoDTO">
+            <summary>
+            DTO para análise de risco do usuário
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:BetGuardianAPI.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BetGuardianAPI.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BetGuardianAPI.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BetGuardianAPI.Models.Alerta">
+            <summary>
+            Modelo que representa um alerta para o usuário
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Models.TipoAlerta">
+            <summary>
+            Enum que define os tipos de alerta
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Models.AtividadeAlternativa">
+            <summary>
+            Modelo que representa uma atividade alternativa para usuários com problemas de apostas
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Models.Usuario">
+            <summary>
+            Modelo que representa um usuário do sistema BetGuardian
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Models.NivelRisco">
+            <summary>
+            Enum que define os níveis de risco do usuário
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Repositories.AlertaRepository">
+            <summary>
+            Implementação do repositório de alertas
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Repositories.AtividadeAlternativaRepository">
+            <summary>
+            Implementação do repositório de atividades alternativas
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Repositories.IAlertaRepository">
+            <summary>
+            Interface do repositório de alertas
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Repositories.IAtividadeAlternativaRepository">
+            <summary>
+            Interface do repositório de atividades alternativas
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Repositories.IUsuarioRepository">
+            <summary>
+            Interface do repositório de usuários
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Repositories.UsuarioRepository">
+            <summary>
+            Implementação do repositório de usuários
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Services.AlertaService">
+            <summary>
+            Implementação do serviço de alertas
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Services.AtividadeAlternativaService">
+            <summary>
+            Implementação do serviço de atividades alternativas
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Services.AuthService">
+            <summary>
+            Serviço responsável pela autenticação e geração de tokens JWT
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Services.ExternalApiService">
+            <summary>
+            Implementação do serviço para integração com APIs externas
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Services.IAlertaService">
+            <summary>
+            Interface do serviço de alertas
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Services.IAtividadeAlternativaService">
+            <summary>
+            Interface do serviço de atividades alternativas
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Services.IAuthService">
+            <summary>
+            Interface do serviço de autenticação
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Services.IExternalApiService">
+            <summary>
+            Interface do serviço para integração com APIs externas
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Services.IUsuarioService">
+            <summary>
+            Interface do serviço de usuários
+            </summary>
+        </member>
+        <member name="T:BetGuardianAPI.Services.UsuarioService">
+            <summary>
+            Implementação do serviço de usuários
+            </summary>
+        </member>
+    </members>
+</doc>

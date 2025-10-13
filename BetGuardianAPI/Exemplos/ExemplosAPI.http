@@ -1,0 +1,124 @@
+### BetGuardian API - Exemplos de Uso
+### Base URL: https://localhost:7000 ou http://localhost:5000
+
+### 1. Obter todos os usuários
+GET {{baseUrl}}/api/usuarios
+Accept: application/json
+
+### 2. Obter usuário por ID
+GET {{baseUrl}}/api/usuarios/1
+Accept: application/json
+
+### 3. Criar novo usuário
+POST {{baseUrl}}/api/usuarios
+Content-Type: application/json
+
+{
+  "nome": "Teste Usuario",
+  "email": "teste@email.com",
+  "idade": 30,
+  "totalApostas": 10,
+  "valorGasto": 500.00
+}
+
+### 4. Atualizar usuário
+PUT {{baseUrl}}/api/usuarios/1
+Content-Type: application/json
+
+{
+  "nome": "João Silva Atualizado",
+  "valorGasto": 1000.00
+}
+
+### 5. Analisar risco do usuário
+GET {{baseUrl}}/api/usuarios/1/analise-risco
+Accept: application/json
+
+### 6. Obter usuários de maior risco
+GET {{baseUrl}}/api/usuarios/maior-risco?limit=5
+Accept: application/json
+
+### 7. Obter usuários por nível de risco
+GET {{baseUrl}}/api/usuarios/por-nivel-risco/Alto
+Accept: application/json
+
+### 8. Obter todos os alertas
+GET {{baseUrl}}/api/alertas
+Accept: application/json
+
+### 9. Criar novo alerta
+POST {{baseUrl}}/api/alertas
+Content-Type: application/json
+
+{
+  "usuarioId": 1,
+  "mensagem": "Este é um alerta de teste",
+  "tipo": 2
+}
+
+### 10. Obter alertas de um usuário
+GET {{baseUrl}}/api/alertas/usuario/1
+Accept: application/json
+
+### 11. Obter alertas por tipo
+GET {{baseUrl}}/api/alertas/tipo/Motivacional
+Accept: application/json
+
+### 12. Obter alertas recentes
+GET {{baseUrl}}/api/alertas/recentes?dias=7
+Accept: application/json
+
+### 13. Obter todas as atividades alternativas
+GET {{baseUrl}}/api/atividadesalternativas
+Accept: application/json
+
+### 14. Criar nova atividade alternativa
+POST {{baseUrl}}/api/atividadesalternativas
+Content-Type: application/json
+
+{
+  "nome": "Yoga",
+  "descricao": "Pratique yoga para relaxar e reduzir o estresse",
+  "categoria": "Bem-estar",
+  "nivelDificuldade": 2,
+  "tempoEstimadoMinutos": 45
+}
+
+### 15. Obter atividades por categoria
+GET {{baseUrl}}/api/atividadesalternativas/categoria/Bem-estar
+Accept: application/json
+
+### 16. Obter atividades por nível de dificuldade
+GET {{baseUrl}}/api/atividadesalternativas/dificuldade/2
+Accept: application/json
+
+### 17. Obter sugestões de atividades para usuário
+GET {{baseUrl}}/api/atividadesalternativas/sugestao/1
+Accept: application/json
+
+### 18. Obter mensagem motivacional da API externa
+GET {{baseUrl}}/api/externalapi/mensagem-motivacional
+Accept: application/json
+
+### 19. Obter informações do clima
+GET {{baseUrl}}/api/externalapi/clima?cidade=São Paulo
+Accept: application/json
+
+### 20. Obter notícia sobre saúde mental
+GET {{baseUrl}}/api/externalapi/noticia-saude-mental
+Accept: application/json
+
+### 21. Criar alerta com dados da API externa (motivacional)
+POST {{baseUrl}}/api/externalapi/criar-alerta/1?tipoApi=motivacional
+Accept: application/json
+
+### 22. Criar alerta com dados da API externa (clima)
+POST {{baseUrl}}/api/externalapi/criar-alerta/1?tipoApi=clima
+Accept: application/json
+
+### 23. Criar alerta com dados da API externa (saúde mental)
+POST {{baseUrl}}/api/externalapi/criar-alerta/1?tipoApi=saude
+Accept: application/json
+
+### Variáveis para uso com REST Client
+@baseUrl = https://localhost:7000

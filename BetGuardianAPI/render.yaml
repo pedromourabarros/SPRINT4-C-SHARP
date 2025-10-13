@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: betguardian-api
+    env: dotnet
+    buildCommand: dotnet restore && dotnet publish -c Release -o ./publish
+    startCommand: dotnet ./publish/BetGuardianAPI.dll
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://0.0.0.0:$PORT
+      - key: ConnectionStrings__DefaultConnection
+        value: Data Source=BetGuardian.db
+    healthCheckPath: /
+    plan: free
