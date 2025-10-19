@@ -49,17 +49,17 @@ BetGuardianAPI/
 
 ### Diagrama de Arquitetura
 
-![Diagrama de Arquitetura](BetGuardianAPI/images/Diagrama-arquitetura.png)
+![Diagrama de Arquitetura](images/Diagrama-arquitetura.png)
 
 ### Fluxo de Dados
 
-![Fluxo de Dados](BetGuardianAPI/images/Fluxo-dados.png)
+![Fluxo de Dados](images/Fluxo-dados.png)
 
 ## 🗄️ Modelo de Dados
 
 ### Diagrama de Entidades
 
-![Diagrama de Entidades](BetGuardianAPI/images/Diagrama-entidades.png)
+![Diagrama de Entidades](images/Diagrama-entidades.png)
 
 ### Entidades Principais
 
@@ -67,16 +67,17 @@ BetGuardianAPI/
 - **Id**: Identificador único
 - **Nome**: Nome completo do usuário
 - **Email**: Email único do usuário
-- **Idade**: Idade do usuário (18-100 anos)
-- **NivelRisco**: Nível de risco calculado (Baixo, Medio, Alto, Critico)
-- **TotalApostas**: Número total de apostas realizadas
+- **Idade**: Idade do usuário
+- **NivelRisco**: Nível de risco calculado (Baixo, Médio, Alto, Crítico)
+- **TotalApostas**: Quantidade total de apostas realizadas
 - **ValorGasto**: Valor total gasto em apostas
+- **PasswordHash**: Hash da senha (criptografada)
 
 #### Alerta
 - **Id**: Identificador único
 - **UsuarioId**: Referência ao usuário
-- **Mensagem**: Conteúdo do alerta
-- **Tipo**: Tipo do alerta (Informativo, Aviso, Critico, Motivacional)
+- **Mensagem**: Texto do alerta
+- **Tipo**: Tipo do alerta (Aviso, Crítico, Motivacional, Informativo)
 - **DataCriacao**: Data e hora de criação
 
 #### AtividadeAlternativa
@@ -197,9 +198,9 @@ O sistema utiliza SQLite como banco de dados padrão. O banco é criado automati
 | POST | `/api/usuarios` | Cria novo usuário |
 | PUT | `/api/usuarios/{id}` | Atualiza usuário |
 | DELETE | `/api/usuarios/{id}` | Remove usuário |
-| GET | `/api/usuarios/{id}/analise-risco` | Analisa risco do usuário |
+| GET | `/api/usuarios/risco/{nivel}` | Lista usuários por nível de risco |
 | GET | `/api/usuarios/maior-risco` | Lista usuários de maior risco |
-| GET | `/api/usuarios/por-nivel-risco/{nivel}` | Lista usuários por nível de risco |
+| POST | `/api/usuarios/{id}/analisar-risco` | Analisa risco do usuário |
 
 ### Alertas (`/api/alertas`)
 
@@ -210,9 +211,7 @@ O sistema utiliza SQLite como banco de dados padrão. O banco é criado automati
 | POST | `/api/alertas` | Cria novo alerta |
 | PUT | `/api/alertas/{id}` | Atualiza alerta |
 | DELETE | `/api/alertas/{id}` | Remove alerta |
-| GET | `/api/alertas/usuario/{usuarioId}` | Lista alertas do usuário |
-| GET | `/api/alertas/tipo/{tipo}` | Lista alertas por tipo |
-| GET | `/api/alertas/recentes` | Lista alertas recentes |
+| GET | `/api/alertas/usuario/{usuarioId}` | Lista alertas de um usuário |
 
 ### Atividades Alternativas (`/api/atividadesalternativas`)
 
@@ -223,155 +222,29 @@ O sistema utiliza SQLite como banco de dados padrão. O banco é criado automati
 | POST | `/api/atividadesalternativas` | Cria nova atividade |
 | PUT | `/api/atividadesalternativas/{id}` | Atualiza atividade |
 | DELETE | `/api/atividadesalternativas/{id}` | Remove atividade |
-| GET | `/api/atividadesalternativas/categoria/{categoria}` | Lista por categoria |
-| GET | `/api/atividadesalternativas/dificuldade/{nivel}` | Lista por dificuldade |
-| GET | `/api/atividadesalternativas/sugestao/{usuarioId}` | Sugestões para usuário |
+| GET | `/api/atividadesalternativas/sugerir` | Sugere atividades para usuário |
 
-### APIs Externas (`/api/externalapi`)
+### APIs Externas (`/api/external`)
 
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
-| GET | `/api/externalapi/mensagem-motivacional` | Obtém mensagem motivacional |
-| GET | `/api/externalapi/clima` | Obtém informações do clima |
-| GET | `/api/externalapi/noticia-saude-mental` | Obtém notícia sobre saúde mental |
-| POST | `/api/externalapi/criar-alerta/{usuarioId}` | Cria alerta com dados externos |
+| GET | `/api/external/clima` | Obtém dados do clima |
+| GET | `/api/external/mensagem-motivacional` | Obtém mensagem motivacional |
+| POST | `/api/external/criar-alerta-clima` | Cria alerta baseado no clima |
+| POST | `/api/external/criar-alerta-motivacional` | Cria alerta motivacional |
 
-## 🔧 Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-### Backend
 - **.NET 8.0**: Framework principal
 - **ASP.NET Core Web API**: Para criação da API REST
 - **Entity Framework Core**: ORM para acesso a dados
 - **SQLite**: Banco de dados local
-- **Swagger/OpenAPI**: Documentação automática da API
-
-### Bibliotecas e Pacotes
-- **Microsoft.EntityFrameworkCore.Sqlite**: Driver SQLite
-- **Swashbuckle.AspNetCore**: Interface Swagger
-- **Newtonsoft.Json**: Serialização JSON
-- **System.ComponentModel.Annotations**: Validações
-
-### Ferramentas de Desenvolvimento
-- **Entity Framework Tools**: Migrations e scaffolding
-- **HttpClient**: Para integração com APIs externas
-- **Dependency Injection**: Container nativo do .NET
-
-## 🌐 Integração com APIs Externas
-
-### APIs Integradas
-
-1. **Open-Meteo API**
-   - **Propósito**: Informações meteorológicas
-   - **Endpoint**: `https://api.open-meteo.com/v1/forecast`
-   - **Uso**: Sugerir atividades ao ar livre baseadas no clima
-
-2. **APIs Simuladas**
-   - **Mensagens Motivacionais**: Frases inspiradoras
-   - **Notícias de Saúde Mental**: Dicas e informações úteis
-
-### Exemplo de Uso
-
-```http
-POST /api/externalapi/criar-alerta/1?tipoApi=motivacional
-```
-
-## 📊 Funcionalidades Principais
-
-### 1. Análise de Risco
-- Cálculo automático do nível de risco baseado em:
-  - Valor total gasto em apostas
-  - Frequência de apostas
-  - Padrões de comportamento
-
-### 2. Sistema de Alertas
-- Alertas automáticos baseados no nível de risco
-- Mensagens motivacionais personalizadas
-- Integração com dados externos
-
-### 3. Sugestões de Atividades
-- Atividades categorizadas por tipo
-- Sugestões baseadas no nível de risco do usuário
-- Filtros por dificuldade e tempo estimado
-
-### 4. Pesquisas com LINQ
-- Usuários de maior risco
-- Alertas por tipo e período
-- Atividades por categoria e dificuldade
-
-## 🚀 Deploy e Publicação
-
-### Para Render.com
-
-1. **Criar arquivo `render.yaml`**:
-   ```yaml
-   services:
-     - type: web
-       name: betguardian-api
-       env: dotnet
-       buildCommand: dotnet restore && dotnet publish -c Release -o ./publish
-       startCommand: dotnet ./publish/BetGuardianAPI.dll
-       envVars:
-         - key: ASPNETCORE_ENVIRONMENT
-           value: Production
-   ```
-
-2. **Configurar variáveis de ambiente**:
-   - `ASPNETCORE_ENVIRONMENT=Production`
-   - `ConnectionStrings__DefaultConnection=Data Source=BetGuardian.db`
-
-### Para Azure
-
-1. **Criar App Service no Azure**
-2. **Configurar deployment**:
-   ```bash
-   dotnet publish -c Release
-   az webapp deploy --resource-group <resource-group> --name <app-name> --src-path ./bin/Release/net8.0/publish
-   ```
-
-## 🧪 Testes e Validação
-
-### Dados de Exemplo
-
-O sistema é populado automaticamente com dados de exemplo:
-
-- **5 usuários** com diferentes níveis de risco
-- **8 atividades alternativas** pré-cadastradas
-- **5 alertas** de exemplo
-
-### Validações Implementadas
-
-- Email único por usuário
-- Idade entre 18 e 100 anos
-- Valores positivos para apostas e gastos
-- Validação de tipos de alerta e níveis de risco
-
-## 📈 Melhorias Futuras
-
-### Funcionalidades Planejadas
-- [ ] Autenticação e autorização
-- [ ] Dashboard web para visualização
-- [ ] Notificações push
-- [ ] Relatórios e analytics
-- [ ] Integração com mais APIs externas
-- [ ] Sistema de metas e recompensas
-- [ ] Chat de suporte
-- [ ] Aplicativo mobile
-
-### Melhorias Técnicas
-- [ ] Testes unitários e de integração
-- [ ] Logging estruturado
-- [ ] Monitoramento e métricas
-- [ ] Cache Redis
-- [ ] Rate limiting
-- [ ] Versionamento da API
-
-
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-
+- **JWT Bearer**: Autenticação e autorização
+- **BCrypt**: Criptografia de senhas
+- **Swagger/OpenAPI**: Documentação da API
+- **xUnit**: Framework de testes
+- **Moq**: Biblioteca para mocks em testes
+- **AutoMapper**: Mapeamento de objetos (se necessário)
 
 ## 🔐 Sobre privacidade e ética
 
@@ -403,6 +276,6 @@ Nós levamos a privacidade a sério. O sistema foi feito pensando na proteção 
 
 ---
 
-**Desenvolvido com carinho para ajudar pessoas a superarem problemas com apostas compulsivas.**
+**Desenvolvido para ajudar pessoas a superarem problemas com apostas compulsivas.**
 
 **Sprint 4 - C# Software Development - FIAP 2025**
