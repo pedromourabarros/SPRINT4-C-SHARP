@@ -49,17 +49,17 @@ BetGuardianAPI/
 
 ### Diagrama de Arquitetura
 
-![Diagrama de Arquitetura](images/Diagrama-arquitetura.png)
+![Diagrama de Arquitetura](BetGuardianAPI/images/Diagrama-arquitetura.png)
 
 ### Fluxo de Dados
 
-![Fluxo de Dados](images/Fluxo-dados.png)
+![Fluxo de Dados](BetGuardianAPI/images/Fluxo-dados.png)
 
 ## 🗄️ Modelo de Dados
 
 ### Diagrama de Entidades
 
-![Diagrama de Entidades](images/Diagrama-entidades.png)
+![Diagrama de Entidades](BetGuardianAPI/images/Diagrama-entidades.png)
 
 ### Entidades Principais
 
